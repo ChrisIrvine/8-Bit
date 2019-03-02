@@ -1,0 +1,36 @@
+.homepage {
+    margin: auto;
+    width: 90%;
+    padding: 10px;
+}
+
+.bg { 
+    /* The image used */
+    background-image: url("../assets/images/ice_shards.png");
+  
+    /* Full height */
+    height: 100vh; 
+  
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.welcome-text {
+    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+}
+
+.player-number-bar, .new-continue {
+    margin-top: 2em;
+}
+
+.player-number-bar > Input, .new, .continue {
+    font-family: '8BITWONDERNominal' !important; 
+    font-weight: normal !important; 
+    font-style: normal !important;
+    color: black !important;
+}
