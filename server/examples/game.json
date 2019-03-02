@@ -1,0 +1,16 @@
+{
+    "player1Id": "1",
+    "player2Id": "2",
+    "players": [
+        {
+            "name": "John",
+            "avatar": 1
+        },
+        {
+            "name": "Ariana",
+            "avatar": 6
+        }
+    ],
+    "baseLevel": 3,
+    "xp": 5000
+}
