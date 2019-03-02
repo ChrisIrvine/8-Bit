@@ -14,7 +14,7 @@ const client = new MongoClient(url);
  * NOTE!! Has NO error checking!
  * @param {*} game 
  */
-export function insertGame(game) {
+exports.insertGame =  async function insertGame(game) {
     client.connect(function (err) {
         assert.equal(null, err);
     
@@ -32,7 +32,7 @@ export function insertGame(game) {
  * Replaces a game in the database with the given ids
  * @param {*} game 
  */
-export function replaceGame(game, player1Id, player2Id) {
+exports.replaceGame = async function replaceGame(game, player1Id, player2Id) {
     client.connect(function (err) {
         assert.equal(null, err);
     
@@ -54,7 +54,8 @@ export function replaceGame(game, player1Id, player2Id) {
  * @param {*} player1Id the ID of the first player
  * @param {*} player2Id the ID of the second player
  */
-export function getGame(player1Id, player2Id) {
+exports.getGame = async function getGame(player1Id, player2Id) {
+    let game = null;
     client.connect(function (err) {
         assert.equal(null, err);
     
@@ -64,8 +65,10 @@ export function getGame(player1Id, player2Id) {
             { "player1Id": player1Id, "player2Id": player2Id }, 
             function(err, res) {
             if (err) throw err;
-            console.log("Replaced");
+            console.log("Lookup done\n" + JSON.stringify(res));
+            game = res;
         });
         client.close();
     }); 
+    return game;
 }
