@@ -11,18 +11,24 @@ class App extends Component {
 
   componentDidMount() {
     this.callBackendAPI()
-      .then(res => this.setState({ data: res.express }))
-      .catch(err => console.log(err));
+      // .then(res => this.setState({ data: res.express }))
+      // .catch(err => console.log(err));
   }
 
   callBackendAPI = async () => {
-    const response = await fetch('/express_backend');
+    try {
+    const response = await fetch('http://localhost:5582/api/game');
     const body = await response.json();
-
-    if (response.status !== 200) {
-      throw Error(body.message) 
+    console.log(body);
+    this.setState({data: body});
+    } catch (err) {
+      console.error(err);
     }
-    return body;
+
+    // if (response.status !== 200) {
+    //   throw Error(body.message) 
+    // }
+    // return body;
   };
 
   render() {
