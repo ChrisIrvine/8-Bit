@@ -16,11 +16,12 @@ function insertGame(game) {
     
         const db = client.db(dbName);
         const collection = db.collection("games");
-        res = collection.insertOne(game);
-    
+        collection.insertOne(game, function(err, res) {
+            if (err) throw err;
+            console.log(res);
+        });
         client.close();
-    });
-    return res.acknowledged;    
+    });  
 }
 
 const game = require("./examples/game.json");
