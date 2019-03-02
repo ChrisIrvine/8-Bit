@@ -8,11 +8,20 @@ const dbName = "8bit";
 
 console.log(url);
 const client = new MongoClient(url);
-client.connect(function(err) {
-    assert.equal(null, err);
-    console.log("Connected successfully to server");
-  
-    const db = client.db(dbName);
-  
-    client.close();
-  });
+
+function insertGame(game) {
+    const res;
+    client.connect(function (err) {
+        assert.equal(null, err);
+    
+        const db = client.db(dbName);
+        const collection = db.collection("games");
+        res = collection.insertOne(game);
+    
+        client.close();
+    });
+    return res.acknowledged;    
+}
+
+const game = require("./examples/game.json");
+insertGame(game)
