@@ -4,6 +4,12 @@ const dataAccess = require("./data-access.js");
 //insertGame(game)
 
 //Get
+dataAccess.getGame("1", "2").then((foundGame) => {
+    console.log("Game:" + foundGame);
+});
 
-const foundGame = dataAccess.getGame("1", "2");
-console.log("Game:" + foundGame);
+// dataAccess.replaceGame("1", "2", game).then(() => {
+//     console.log("Replace done");
+// });
+
+dataAccess.insertGame()
