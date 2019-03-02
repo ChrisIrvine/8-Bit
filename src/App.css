@@ -7,8 +7,9 @@ html, body, #app, #app>div {
   font-style: normal !important; 
 }
 
-.App {
+.App, .content-section {
   text-align: center;
+  width: 100%;
   margin: 0;
   padding: 0;
   border: 0;

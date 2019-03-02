@@ -1,0 +1,33 @@
+.avatar-select {
+    margin: auto;
+    width: 90%;
+    padding: 10px;
+}
+
+.avatar-bg { 
+    /* The image used */
+    background-image: url("../images/avatar-select.gif");
+  
+    /* Full height */
+    height: 100vh;
+    width: 100%;
+  
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.avatar-text {
+    padding: 7em 0
+}
+
+.avatar-continue {
+    font-family: '8BITWONDERNominal' !important; 
+    font-weight: normal !important; 
+    font-style: normal !important;
+    color: black !important;
+}

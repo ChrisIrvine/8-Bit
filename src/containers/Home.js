@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import '../assets/home.css';
+import '../assets/css/home.css';
 import '../App.css';
-import { Input, Button, Divider, Link} from 'semantic-ui-react';
+import { Input, Button, Divider } from 'semantic-ui-react';
 import 'semantic-ui-css/semantic.min.css';
 
 
