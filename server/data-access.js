@@ -9,8 +9,12 @@ const dbName = "8bit";
 console.log(url);
 const client = new MongoClient(url);
 
-function insertGame(game) {
-    const res;
+/**
+ * Inserts a game to the database
+ * NOTE!! Has NO error checking!
+ * @param {*} game 
+ */
+export function insertGame(game) {
     client.connect(function (err) {
         assert.equal(null, err);
     
@@ -18,11 +22,50 @@ function insertGame(game) {
         const collection = db.collection("games");
         collection.insertOne(game, function(err, res) {
             if (err) throw err;
-            console.log(res);
+            console.log("Inserted");
         });
         client.close();
     });  
 }
 
-const game = require("./examples/game.json");
-insertGame(game)
+/**
+ * Replaces a game in the database with the given ids
+ * @param {*} game 
+ */
+export function replaceGame(game, player1Id, player2Id) {
+    client.connect(function (err) {
+        assert.equal(null, err);
+    
+        const db = client.db(dbName);
+        const collection = db.collection("games");
+        collection.replaceOne(
+            { "player1Id": player1Id, "player2Id": player2Id }, 
+            game, 
+            function(err, res) {
+            if (err) throw err;
+            console.log("Replaced");
+        });
+        client.close();
+    }); 
+}
+
+/**
+ * Gets a game from the database, or null if it doesn't exist
+ * @param {*} player1Id the ID of the first player
+ * @param {*} player2Id the ID of the second player
+ */
+export function getGame(player1Id, player2Id) {
+    client.connect(function (err) {
+        assert.equal(null, err);
+    
+        const db = client.db(dbName);
+        const collection = db.collection("games");
+        collection.findOne(
+            { "player1Id": player1Id, "player2Id": player2Id }, 
+            function(err, res) {
+            if (err) throw err;
+            console.log("Replaced");
+        });
+        client.close();
+    }); 
+}
