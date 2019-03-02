@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import Home from './containers/Home';
 
 class App extends Component {
   state = {
@@ -22,13 +23,10 @@ class App extends Component {
     return body;
   };
 
-
-
   render() {
     return (
       <div className="App">
-        <p>Hello World!</p>
-        <p>{this.state.data}</p>
+        <Home/>
       </div>
     );
   }

@@ -1,0 +1,27 @@
+.homepage {
+    height: 80%;
+    width: 80%; 
+    margin: auto auto;
+    padding: 2em;
+}
+
+.bg { 
+    /* The image used */
+    background-image: url("../assets/images/ice_shards.png");
+  
+    /* Full height */
+    height: 100%; 
+  
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.welcome-text {
+    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+}
+
+.player-number-bar, .new-continue {
+    margin-top: 2em; 
+}
