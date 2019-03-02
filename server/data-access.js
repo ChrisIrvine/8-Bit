@@ -21,7 +21,7 @@ exports.insertGame =  async function insertGame(game) {
         const db = client.db(dbName);
         const collection = db.collection("games");
 
-        res = await collection.insertOne(game);
+        const res = await collection.insertOne(game);
         console.log(res);
     } catch (err) {
         console.error(err.stack);

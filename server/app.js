@@ -3,8 +3,11 @@ const dataAccess = require("./data-access.js");
 
 const app = express()
 const bodyParser = require("body-parser");
+const cors = require('cors')
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
+
 
 const port = 5582
 app.use(express.static("public"));  //Assets folder
@@ -27,7 +30,7 @@ async function getGame(req, res) {
 
     let game = null;
     //Check if this game exists
-    foundGame = await dataAccess.getGame(firstId, secondId);
+    const foundGame = await dataAccess.getGame(firstId, secondId);
     if (foundGame == null) {
         //create game
         game = {
