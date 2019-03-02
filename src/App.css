@@ -1,3 +1,12 @@
+html, body, #app, #app>div {
+  height: 100%;
+  margin: 0;
+  /*background-color: #257ca3 !important;*/
+  font-family: '8BITWONDERNominal' !important; 
+  font-weight: normal !important; 
+  font-style: normal !important; 
+}
+
 .App {
   text-align: center;
   margin: 0;
@@ -7,13 +16,4 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-}
-
-html, body {
-  height: 100%;
-  margin: 0;
-  background-color: #257ca3 !important;
-  font-family: '8BITWONDERNominal' !important; 
-  font-weight: normal !important; 
-  font-style: normal !important; 
 }
