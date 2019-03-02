@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { BrowserRouter, NavLink, Route } from 'react-router-dom';
 import './App.css';
 import Home from './containers/Home';
+import AvatarSelect from './containers/AvatarSelect';
 
 class App extends Component {
   state = {
@@ -26,7 +28,12 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Home/>
+        <BrowserRouter basename="/icebreaker-game/">
+            <div className="content-section">
+              <Route exact path="/" component={Home} />
+              <Route path="/avatar-select" component={AvatarSelect} />
+            </div>
+        </BrowserRouter>
       </div>
     );
   }

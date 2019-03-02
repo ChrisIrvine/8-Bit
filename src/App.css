@@ -1,7 +1,7 @@
 html, body, #app, #app>div {
   height: 100%;
   margin: 0;
-  /*background-color: #257ca3 !important;*/
+  background-color: #257ca3 !important;
   font-family: '8BITWONDERNominal' !important; 
   font-weight: normal !important; 
   font-style: normal !important; 
@@ -16,4 +16,12 @@ html, body, #app, #app>div {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+  font-family: '8BITWONDERNominal' !important; 
+  font-weight: normal !important; 
+  font-style: normal !important;
+  text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+  color: black;
 }

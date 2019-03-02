@@ -1,6 +1,6 @@
 # 8-Bit
 Repo for the 8-Bit hack
-
+ 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
