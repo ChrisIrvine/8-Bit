@@ -15,17 +15,21 @@ const client = new MongoClient(url);
  * @param {*} game 
  */
 exports.insertGame =  async function insertGame(game) {
-    client.connect(function (err) {
-        assert.equal(null, err);
-    
+    let con;
+    try {
+        con = await client.connect();
         const db = client.db(dbName);
         const collection = db.collection("games");
-        collection.insertOne(game, function(err, res) {
-            if (err) throw err;
-            console.log("Inserted");
-        });
-        client.close();
-    });  
+
+        await collection.insertOne(game);
+    } catch (err) {
+        console.error(err.stack);
+    }
+    if (con) {
+        con.close();
+    }
+    console.log("Inserted");
+    return game;  
 }
 
 /**
@@ -33,20 +37,24 @@ exports.insertGame =  async function insertGame(game) {
  * @param {*} game 
  */
 exports.replaceGame = async function replaceGame(game, player1Id, player2Id) {
-    client.connect(function (err) {
-        assert.equal(null, err);
-    
+    let con;
+    try {
+        con = await client.connect();
         const db = client.db(dbName);
         const collection = db.collection("games");
-        collection.replaceOne(
+
+        await collection.replaceOne(
             { "player1Id": player1Id, "player2Id": player2Id }, 
-            game, 
-            function(err, res) {
-            if (err) throw err;
-            console.log("Replaced");
-        });
-        client.close();
-    }); 
+            game
+        );
+    } catch (err) {
+        console.error(err.stack);
+    }
+    if (con) {
+        con.close();
+    }
+    console.log("Replaced");
+    return game;
 }
 
 /**
@@ -56,19 +64,21 @@ exports.replaceGame = async function replaceGame(game, player1Id, player2Id) {
  */
 exports.getGame = async function getGame(player1Id, player2Id) {
     let game = null;
-    client.connect(function (err) {
-        assert.equal(null, err);
-    
+    let con;
+    try {
+        con = await client.connect();
         const db = client.db(dbName);
         const collection = db.collection("games");
-        collection.findOne(
-            { "player1Id": player1Id, "player2Id": player2Id }, 
-            function(err, res) {
-            if (err) throw err;
-            console.log("Lookup done\n" + JSON.stringify(res));
-            game = res;
-        });
-        client.close();
-    }); 
+
+        game = await collection.findOne(
+            { "player1Id": player1Id, "player2Id": player2Id }
+        );
+    } catch (err) {
+        console.error(err.stack);
+    }
+    if (con) {
+        con.close();
+    }
+    console.log(game);
     return game;
 }
