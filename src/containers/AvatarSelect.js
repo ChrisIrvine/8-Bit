@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Image, ImageGroup, Button } from 'semantic-ui-react';
 import 'semantic-ui-css/semantic.min.css';
+import { Link } from 'react-router-dom'
 import FireSprite from '../assets/images/sprite-fire.png';
 import EarthSprite from '../assets/images/sprite-earth.png';
 import MysticSprite from '../assets/images/sprite-mystic.png';
@@ -10,7 +11,13 @@ import '../assets/css/avatar-select.css';
 function ReadyToContinue (props) {
     if ((props.player1Avatar !== -1) && (props.player2Avatar !== -1)) {
         console.log("rendering continue button")
-        return <a href="/base"><Button className="avatar-continue">Continue</Button></a>
+        return  <Button
+                as={ Link }
+                to='/base'
+                className="avatar-continue"
+                >
+                    Continue
+                </Button>
     } else {
         return null
     }
@@ -129,7 +136,11 @@ class AvatarSelect extends Component {
                         />
                     </ImageGroup>
                     </div>
-                    <ReadyToContinue player1Avatar={this.state.player1Avatar} player2Avatar={this.state.player2Avatar}/>
+                    <Button onClick={() => this.props.registerAvatars(this.state.player1Avatar, this.state.player2Avatar)}>Register Avatars</Button>
+                    <ReadyToContinue 
+                        player1Avatar={this.state.player1Avatar} 
+                        player2Avatar={this.state.player2Avatar}
+                    />
                 </div>
             </div>           
         )

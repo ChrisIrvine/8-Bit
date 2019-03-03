@@ -51,12 +51,42 @@ class App extends Component {
   //}
 
   state = {
+    selectedId: 0,
     game: [
       {id: 0, players: [
-        {name: "Jack",avatar: 0},
+        {name: "Jack", avatar: 0},
         {name: "Jill", avatar: 3}
-      ], baseLevel: 2, xp: 500}
+      ], baseLevel: 3, xp: 500}
     ]
+  }
+
+  createNewGame = (player1, player2) => {
+    this.setState({
+      selectedId: 1,
+      game: [...this.state.game, 
+        {id: 1, players: [
+          {name: player1, avatar: -1},
+          {name: player2, avatar: -1}
+        ], baseLevel: 0, xp: 0}
+    ]});
+  }
+
+  registerAvatars = (player1Avatar, player2Avatar) => {
+    console.log("Registering Avatars")
+    let holder = JSON.parse(JSON.stringify(this.state.game));
+
+    holder[1].players[0].avatar = player1Avatar;
+    holder[1].players[1].avatar = player2Avatar;
+
+    this.setState({
+      game: holder
+    })
+  }
+
+  continueGame = () => {
+    this.setState({
+      selectedId: 0
+    })
   }
 
   render() {
@@ -64,9 +94,22 @@ class App extends Component {
       <div className="App">
         <BrowserRouter>
             <div className="content-section">
-              <Route exact path="/" component={Home} />
-              <Route path="/avatar-select" render={( props ) => <AvatarSelect {...props} data={this.state.data}/>} />
-              <Route path="/base" render={( props ) => <Base {...props} data={this.state.data}/>} />
+              <Route 
+                exact path="/" 
+                render={() => <Home 
+                  createNewGame={this.createNewGame}
+                  continueGame={this.continueGame}
+                  games={this.state.game}/>} />
+              <Route 
+                path="/avatar-select" 
+                render={( props ) => <AvatarSelect {...props} 
+                  game={this.state.game} 
+                  currentGame={this.state.selectedId}
+                  registerAvatars={this.registerAvatars}/>} />
+              <Route path="/base" 
+                render={( props ) => <Base {...props} 
+                  game={this.state.game}
+                  currentGame={this.state.selectedId}/>} />
             </div>
         </BrowserRouter>
       </div>
