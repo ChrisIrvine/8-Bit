@@ -1,11 +1,54 @@
 import React, { Component } from 'react';
-import '../assets/home.css';
+import '../assets/css/home.css';
 import '../App.css';
-import { Input, Button, Divider, Link} from 'semantic-ui-react';
+import { Button, Divider, Form } from 'semantic-ui-react';
+import { Link } from 'react-router-dom'
 import 'semantic-ui-css/semantic.min.css';
 
+function ToAvatarSelect (props) {
+    if ((props.player1Name !== "") && (props.player2Name !== "") && (props.createdGame)) {
+        console.log("rendering continue button")
+        return <Button>
+                    Select Avatars
+                </Button>
+    } else {
+        return null
+    }
+}
 
 class Home extends Component {
+    state = {
+        player1Name: '',
+        player2Name: '',
+        createdGame: false
+    }
+
+    p1Change = (e) => {
+        let p1Name = e.target.value;
+        
+        this.setState((prevState, props) => {
+            return {
+                player1Name: p1Name
+            };
+        })
+    }
+
+    p2Change = (e) => {
+        let p2Name = e.target.value;
+
+        this.setState((prevState, props) => {
+            return {
+                player2Name: p2Name
+            };
+        })
+    }
+
+    handleClick = () => {
+        this.setState({
+            createdGame: true
+        })
+    }
+
     render() {
         return (
             <div className="bg">
@@ -14,18 +57,52 @@ class Home extends Component {
                         <h1>Welcome to Icebreakers, the 'ice breaking' game! Disclaimer: no actual ice will be broken in the game, 
                             there is a significant risk of walking away with a new long-term friend</h1>
                     </div>
-                    <div className="player-number-bar">
-                        <Input className="player1" focus placeholder="Player 1 Number"></Input>
-                        <Input className="player2" focus placeholder="Player 2 Number"></Input>
+                    <Divider />
+                    <Form onSubmit={() => this.props.createNewGame(this.state.player1Name, this.state.player2Name)}>
+                        <Form.Group>
+                            <Form.Input
+                                type="text"
+                                placeholder='Player 1 Name' 
+                                name='player 1 name'
+                                value={this.state.player1Name}
+                                onChange={this.p1Change}/>
+                            <Form.Input 
+                                type="text"
+                                placeholder='Player 2 Name'
+                                name='player 2 name' 
+                                value={this.state.player2Name}
+                                onChange={this.p2Change}/>
+                            <Form.Button
+                                onClick={this.handleClick}
+                                content='New Game'
+                            />
+                        </Form.Group>
+                    </Form>
+                    <ToAvatarSelect
+                        player1Name={this.state.player1Name}
+                        player2Name={this.state.player2Name}
+                        createdGame={this.state.createdGame}
+                    />
+                    <Divider />
+                    <Button
+                        onClick={ () => this.props.continueGame(this.state.player1Name, this.state.player2Name)}
+                        className="continue">
+                            Continue Game
+                    </Button> 
+                    {/* <div className="player-number-bar">
+                        <Input className="player1" focus placeholder="Player 1 Name" onChange={}></Input>
+                        <Input className="player2" focus placeholder="Player 2 Name" onChange={}></Input>
                     </div>
-                    <Divider /> {/*create custom divider with is a series of 8-bit snow flakes*/}
-                    <Button className="continue">Continue Game</Button> {/*function that access the correct game file*/}
+                    <Divider />
+                    <Button 
+                        as={ Link } to="/base" 
+                        className="continue">Continue Game</Button> 
                     <a href="/avatar-select">
                         <Button className="new">New Game</Button>
-                    </a> {/*Moves to page that adds the entry for names*/}
+                    </a> */}
                 </div>
             </div> 
-        )
+        )     
     }
 }
 
