@@ -10,7 +10,7 @@ import '../assets/css/avatar-select.css';
 function ReadyToContinue (props) {
     if ((props.player1Avatar !== -1) && (props.player2Avatar !== -1)) {
         console.log("rendering continue button")
-        return <Button className="avatar-continue">Continue</Button>
+        return <a href="/base"><Button className="avatar-continue">Continue</Button></a>
     } else {
         return null
     }
@@ -110,22 +110,22 @@ class AvatarSelect extends Component {
                         <Image 
                             src={FireSprite} 
                             onClick={this.handlefsToggleClick} 
-                            disabled={this.state.fsDisabled}
+                            disabled={!this.state.fsDisabled}
                         />
                         <Image 
                             src={EarthSprite} 
                             onClick={this.handleesToggleClick} 
-                            disabled={this.state.esDisabled}
+                            disabled={!this.state.esDisabled}
                         />
                         <Image 
                             src={MysticSprite} 
                             onClick={this.handlemsToggleClick} 
-                            disabled={this.state.msDisabled}
+                            disabled={!this.state.msDisabled}
                         />
                         <Image 
                             src={IceSprite} 
                             onClick={this.handleisToggleClick} 
-                            disabled={this.state.isDisabled}
+                            disabled={!this.state.isDisabled}
                         />
                     </ImageGroup>
                     </div>

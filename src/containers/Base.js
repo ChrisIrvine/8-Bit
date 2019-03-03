@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
+import '../assets/css/base.css';
+import BaseImage from '../components/BaseImage'
 
-class Base extends Component {
-    render() {
-        return (
-            <div className="base">
-            
-            </div>
-        )
-    }
+const Base = ( {  data, ...props } ) => {
+    return (
+        <div className="base">
+            {data && <BaseImage basenumber={data.baseLevel}/>}
+        </div>
+    )
 }
 
 export default Base;
