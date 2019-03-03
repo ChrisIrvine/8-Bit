@@ -12,9 +12,8 @@ function ReadyToContinue (props) {
     if ((props.player1Avatar !== -1) && (props.player2Avatar !== -1)) {
         console.log("rendering continue button")
         return  <Button
-                as={ Link }
-                to='/base'
                 className="avatar-continue"
+                onClick={() =>this.registerAvatars(props.player1Avatar, props.player2Avatar)}
                 >
                     Continue
                 </Button>

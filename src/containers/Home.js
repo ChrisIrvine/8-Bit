@@ -8,10 +8,7 @@ import 'semantic-ui-css/semantic.min.css';
 function ToAvatarSelect (props) {
     if ((props.player1Name !== "") && (props.player2Name !== "") && (props.createdGame)) {
         console.log("rendering continue button")
-        return <Button 
-                    as={ Link }  
-                    to="/avatar-select"
-                >
+        return <Button>
                     Select Avatars
                 </Button>
     } else {
@@ -67,13 +64,13 @@ class Home extends Component {
                                 type="text"
                                 placeholder='Player 1 Name' 
                                 name='player 1 name'
-                                // value={this.state.player1Name}
+                                value={this.state.player1Name}
                                 onChange={this.p1Change}/>
                             <Form.Input 
                                 type="text"
                                 placeholder='Player 2 Name'
                                 name='player 2 name' 
-                                // value={this.state.player2Name}
+                                value={this.state.player2Name}
                                 onChange={this.p2Change}/>
                             <Form.Button
                                 onClick={this.handleClick}
@@ -87,10 +84,8 @@ class Home extends Component {
                         createdGame={this.state.createdGame}
                     />
                     <Divider />
-                    <Button 
-                        as={ Link } 
-                        to="/base"
-                        onClick={this.props.continueGame}
+                    <Button
+                        onClick={ () => this.props.continueGame(this.state.player1Name, this.state.player2Name)}
                         className="continue">
                             Continue Game
                     </Button> 

@@ -10,7 +10,11 @@ app.use(bodyParser.json())
 
 
 const port = 5582
-app.use(express.static("public"));  //Assets folder
+app.use(express.static("../build"));  //Assets folder
+app.get('/', function (req, res) {
+    res.sendFile('/home/ville/Documents/8-Bit/build/index.html');
+});
+
 
 app.get("/api/game/", getGame);
 app.post("/api/game/", postGame);
@@ -57,6 +61,7 @@ async function getGame(req, res) {
 }
 
 async function postGame(req, res) {
+    console.log("post");
     const game = req.body;
 
     let firstId = req.query.player1;

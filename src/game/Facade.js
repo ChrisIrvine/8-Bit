@@ -45,9 +45,7 @@ export default class Facade extends Component {
             <div>
                 <p style={{ color: "#000000" }}>Your score was: {this.state.score}</p>
                 <Button
-                    onClick={() => this.props.gameOver(this.state.score)}
-                    as={ Link } 
-                    to="/base">
+                    onClick={() => this.props.gameOver(this.state.score)}>
                     Return to main screen
                 </Button>
             </div>

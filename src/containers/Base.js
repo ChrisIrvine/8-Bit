@@ -17,7 +17,9 @@ class Base extends Component {
     render() {
         return (
             <div className="base">
-                <WhichBase baseLevel={this.props.game[this.props.currentGame].baseLevel}/>
+                <p>XP: {this.props.game.xp}</p>
+                <button onClick={() => this.props.playGame()}>Play Game</button>
+                <WhichBase baseLevel={this.props.game.baseLevel}/>
             </div>
         )
     }
