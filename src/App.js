@@ -68,13 +68,16 @@ class App extends Component {
     createNewGame = (player1, player2) => {
         this.setState({
             selectedId: 1,
-            game: [...this.state.game,
-            {
-                id: 1, players: [
-                    { name: player1, avatar: -1 },
-                    { name: player2, avatar: -1 }
-                ], baseLevel: 0, xp: 0
-            }
+            game: [
+                ...this.state.game,
+                {
+                    id: 1, 
+                    players: [
+                        { name: player1, avatar: -1 },
+                        { name: player2, avatar: -1 }
+                    ],
+                    baseLevel: 0, xp: 0
+                }
             ]
         });
     }
@@ -100,6 +103,7 @@ class App extends Component {
     gameOver(finalScore) {
         console.log("Score received: " + finalScore);
         //TODO use score
+        this.setState()
     }
 
     render() {
@@ -124,9 +128,18 @@ class App extends Component {
                                 game={this.state.game}
                                 currentGame={this.state.selectedId} />} />
                         <Route path="/game"
-                            render={(props) => <Facade {...props}
-                                gameOver={this.gameOver}
-                                currentGame={this.state.selectedId} />} />
+                            render={(props) => (
+                                <div className="gameContainer">
+                                    <div className="left column"></div>
+                                    <div className="centre_game column">
+                                        <Facade  {...props}
+                                            gameOver={this.gameOver}
+                                            currentGame={this.state.selectedId} />
+                                    </div>
+                                    <div className="right column"></div>
+                                </div>
+                            )} />
+
                     </div>
                 </BrowserRouter>
             </div>
